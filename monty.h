@@ -65,7 +65,9 @@ void print_array(char **array);
  */
 
 void push_f(stack_t **stack, unsigned int line_number);
-//void push_f(stack_t **stack, unsigned int line_number);
+/**
+ * void push_f(stack_t **stack, unsigned int line_number);
+ */
 void pall_f(stack_t **stack, unsigned int line_number);
 void pint_f(stack_t **stack, unsigned int line_number);
 

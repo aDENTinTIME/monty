@@ -1,9 +1,10 @@
 #include "monty.h"
 
-//create global variable, maybe in header file
-//I'm thinking it'll probably store the head of the list/stack?
-//maybe line number?
-
+/*
+create global variable, maybe in header file
+I'm thinking it'll probably store the head of the list/stack?
+maybe line number?
+*/
 
 /*
 void cleanup(FILE *fp, char *path, char *line, char **array)
@@ -25,9 +26,9 @@ void (*find_opcode(char *array, unsigned int line_number))(stack_t **stack, unsi
 	int i;
 	instruction_t instruct[] = {
 		{"push", push_f},
-//		{"push", push_f},
-// be ready to use push_f2
-		{"pall", pall_f},
+/*		{"push", push_f},
+		be ready to use push_f2
+*/		{"pall", pall_f},
 		{"pint", pint_f},
 		{"nop", NULL},
 		{NULL, NULL}
@@ -38,12 +39,8 @@ void (*find_opcode(char *array, unsigned int line_number))(stack_t **stack, unsi
 	while (instruct[i].opcode)
 	{
 		if (!strcmp(instruct[i].opcode, code_line[0]))
-		{
 			return (instruct[i].f);
-//change line number?
-		}
 		i++;
-//else print opcode not found
 	}
 	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n", line_number, code_line[0]);
 	free_array(code_line);
@@ -70,9 +67,9 @@ void parse(char *path, int *error)
 			fclose(fp);
 			free(path);
 			return;
-// maybe exit success? or return idk
-// do i need a special exit message?
-		}
+/* maybe exit success? or return idk
+   do i need a special exit message?
+*/		}
 		if (line)
 		{
 			array = tokenizer(line, "\n");
@@ -87,7 +84,6 @@ void parse(char *path, int *error)
 		free_array(array);
 		line_number++;
 	}
-//free array when we end DON'T FORGET
 }
 
 void make_path(char **path, char *filename, int *error)
@@ -102,7 +98,7 @@ void make_path(char **path, char *filename, int *error)
 		*error = 1;
 		return;
 	}
-	strcpy(*path,"./");
+	strcpy(*path, "./");
 	strcat(*path, filename);
 }
 
@@ -122,25 +118,26 @@ int main(int argc, char **argv)
 	make_path(&path, filename, &error);
 	can_access_file(path, filename, &error);
 	parse(path, &error);
+/*
+  read(fp, buff, count);
+  should i use fopen or just open??
 
-//	read(fp, buff, count);
-//should i use fopen or just open??
+  get args
+  prepend path to file
+  open file
+  read file
+  perform functions on each line of file
+  check for EOF
+  exit with success code
+  or error code if necessary
 
-//get args
-//prepend path to file
-//open file
-//read file
-//perform functions on each line of file
-//check for EOF
-//exit with success code
-//or error code if necessary
+  exit or return
 
-//	cleanup();
-
+  cleanup();
+*/
 	if (error)
 		exit(EXIT_FAILURE);
 
 	exit(EXIT_SUCCESS);
 
-// exit or return
 }
