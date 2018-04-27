@@ -1,0 +1,4 @@
+push 48
+push 0
+div
+pall

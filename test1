@@ -1,0 +1,20 @@
+push 9
+push 0
+push -1
+push 2
+#pall
+sub
+push 10
+pall
+mod
+push 3
+pall
+push 99
+pchar
+pall
+push 76
+pchar
+pop
+pall
+div
+pall
