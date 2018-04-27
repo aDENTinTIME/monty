@@ -130,7 +130,6 @@ void viable_file(char *path, char *filename)
 		free(filename);
 		exit(EXIT_FAILURE);
 	}
-	free(filename);
 }
 
 
