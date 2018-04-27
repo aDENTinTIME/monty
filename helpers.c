@@ -40,7 +40,9 @@ void (*find_opcode(char **array, unsigned int line_number, stack_t **stack))\
 	while (instruct[i].opcode)
 	{
 		if (!strcmp(instruct[i].opcode, code_line[0]))
+		{
 			return (instruct[i].f);
+		}
 		i++;
 	}
 	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n",
@@ -66,6 +68,8 @@ void parse(char *path)
 	unsigned int line_number = 1;
 
 	fp = fopen(path, "r");
+	if (!fp)
+		viable_file(path, "");
 	free(path);
 	while (1)
 	{
@@ -87,12 +91,11 @@ void parse(char *path)
 			func = find_opcode(array, line_number, &stack);
 			if (func)
 				func(&stack, line_number);
-		}
-		if (code_line)
 			free_array(code_line);
-		code_line = NULL;
-		if (array)
+			code_line = NULL;
 			free_array(array);
+			array = NULL;
+		}
 		line_number++;
 	}
 }
@@ -108,7 +111,7 @@ void correct_number_of_arguments(int argc)
 {
 	if (argc != 2)
 	{
-		dprintf(STDERR_FILENO, "USAGE: monty file\n");
+		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -126,7 +129,6 @@ void viable_file(char *path, char *filename)
 	{
 		dprintf(STDOUT_FILENO, "Error: Can\'t open file %s\n", filename);
 		free(path);
-		free(filename);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -144,7 +146,6 @@ void make_path(char **path, char *filename)
 	if (!*path)
 	{
 		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
-		free(filename);
 		exit(EXIT_FAILURE);
 	}
 	strcpy(*path, "./");
