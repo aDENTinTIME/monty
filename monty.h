@@ -60,7 +60,8 @@ void short_stack(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 void make_path(char **path, char *filename);
 void parse(char *path);
-
+void (*find_opcode(char **array, unsigned int line_number, stack_t **stack))\
+		(stack_t **stack, unsigned int line_number);
 
 /* Opcodes */
 void push_f(stack_t **stack, unsigned int line_number);

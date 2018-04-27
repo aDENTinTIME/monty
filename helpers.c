@@ -9,10 +9,10 @@
  * @stack: Head of stack.
  * Return: Pointer to function or NULL if nonexistent.
  */
-void (*find_opcode(char *array, unsigned int line_number, stack_t **stack))\
+void (*find_opcode(char **array, unsigned int line_number, stack_t **stack))\
 		(stack_t **stack, unsigned int line_number)
 {
-	int i;
+	int i = 0;
 	instruction_t instruct[] = {
 		{"push", push_f},
 		{"pall", pall_f},
@@ -29,12 +29,10 @@ void (*find_opcode(char *array, unsigned int line_number, stack_t **stack))\
 		{NULL, NULL}
 	};
 
-	i = 0;
-
 	if (!array)
 		return (NULL);
 
-	code_line = tokenizer(array, " ");
+	code_line = tokenizer(array[0], " ");
 
 	if (!code_line || code_line[0][0] == '#')
 		return (NULL);
@@ -48,6 +46,7 @@ void (*find_opcode(char *array, unsigned int line_number, stack_t **stack))\
 	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n",
 		line_number, code_line[0]);
 	free_array(code_line);
+	free_array(array);
 	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }
@@ -86,7 +85,7 @@ void parse(char *path)
 		}
 		if (array)
 		{
-			func = find_opcode(array[0], line_number, &stack);
+			func = find_opcode(array, line_number, &stack);
 			if (func)
 				func(&stack, line_number);
 		}
@@ -128,8 +127,10 @@ void viable_file(char *path, char *filename)
 	{
 		dprintf(STDOUT_FILENO, "Error: Can\'t open file %s\n", filename);
 		free(path);
+		free(filename);
 		exit(EXIT_FAILURE);
 	}
+	free(filename);
 }
 
 
@@ -145,6 +146,7 @@ void make_path(char **path, char *filename)
 	if (!*path)
 	{
 		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
+		free(filename);
 		exit(EXIT_FAILURE);
 	}
 	strcpy(*path, "./");

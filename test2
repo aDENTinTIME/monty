@@ -1,4 +1,25 @@
-push 48
-push 0
-div
+push 77
+
+
+ 
+  
+       
+    
+
+   push 2 HELLOOOOOO
+ pall   
+
+
+
+  pall
+sub
+push 98
+pall
+
+        push 234
+  div
+       pall      garbage
+
+push -97
+   add     
 pall

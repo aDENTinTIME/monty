@@ -1,20 +1,30 @@
-push 9
-push 0
-push -1
-push 2
-#pall
+push 77
+pchar
+
+
+ 
+  
+       
+    
+   #hi
+
+#hey
+   push 2 HELLOOOOOO
+ pall   
+
+
+
+  pall
 sub
-push 10
+    pchar #ooooh much comment
+push 98
+       pchar ow
 pall
-mod
-push 3
-pall
-push 99
-pchar
-pall
-push 76
-pchar
-pop
-pall
-div
+
+        push 234
+  div
+       pall      garbage
+
+push -97
+   add     
 pall
