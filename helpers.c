@@ -46,7 +46,6 @@ void (*find_opcode(char **array, unsigned int line_number, stack_t **stack))\
 	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n",
 		line_number, code_line[0]);
 	free_array(code_line);
-	free_array(array);
 	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }
