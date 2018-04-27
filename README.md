@@ -6,9 +6,10 @@ To run, compile all the C files, make the resultant file executable, then run th
 
 
 ## Example:
+```
+$ gcc -Wall -Werror -Wextra -pedantic \*.c -o monty
 
-gcc -Wall -Werror -Wextra -pedantic \*.c -o monty
+$ chmod a+x monty
 
-chmod a+x monty
-
-./monty **FILENAME**
+$ ./monty FILENAME
+```
