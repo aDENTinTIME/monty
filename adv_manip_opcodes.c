@@ -2,6 +2,28 @@
 
 
 /**
+ * pstr_f - Prints the string starting at the
+ * top of the stack, followed by a new line.
+ *
+ * @stack: Head of stack.
+ * @line_number: Line number for current line of code.
+ */
+void pstr_f(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	(void)line_number;
+
+	while (temp && temp->n && temp->n >= 0 && temp->n <= 127)
+	{
+		putchar(temp->n);
+		temp = temp->next;
+	}
+	putchar('\n');
+}
+
+
+/**
  * rotl_f - Rotates the stack to the top.
  *
  * @stack: Head of stack.

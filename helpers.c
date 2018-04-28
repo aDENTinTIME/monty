@@ -25,6 +25,7 @@ void (*find_opcode(char **array, unsigned int line_number, stack_t **stack))\
 		{"mul", math},
 		{"mod", math},
 		{"pchar", pchar_f},
+		{"pstr", pstr_f},
 		{"rotl", rotl_f},
 		{"rotr", rotr_f},
 		{"nop", NULL},

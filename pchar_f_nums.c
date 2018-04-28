@@ -2,6 +2,27 @@
 
 
 /**
+ * only_nums - Checks if string contains anything other than a number.
+ *
+ * @s: String.
+ * Return: 0 if string is only numbers, 1 otherwise.
+ */
+int only_nums(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+	{
+		if (s[i] > '9' || s[i] < '0')
+			if (s[i] != '-')
+				return (1);
+		i++;
+	}
+	return (0);
+}
+
+
+/**
  * pchar_f - Prints the char at the top of the stack, followed by a new line.
  *
  * @stack: Head of stack.

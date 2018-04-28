@@ -2,27 +2,6 @@
 
 
 /**
- * is_only_numbers - Checks if string contains anything other than a number.
- *
- * @s: String.
- * Return: 0 if string is only numbers, 1 otherwise.
- */
-int is_only_numbers(char *s)
-{
-	int i = 0;
-
-	while (s[i])
-	{
-		if (s[i] > '9' || s[i] < '0')
-			if (s[i] != '-')
-				return (1);
-		i++;
-	}
-	return (0);
-}
-
-
-/**
  * push_f - Adds a new node at the beginning of a stack_t list.
  *
  * @stack: Head of stack.
@@ -36,7 +15,7 @@ void push_f(stack_t **stack, unsigned int line_number)
 	if (!stack)
 		return;
 
-	if (!code_line[1] || !strcmp(code_line[1], "") || is_only_numbers(code_line[1]))
+	if (!code_line[1] || !strcmp(code_line[1], "") || only_nums(code_line[1]))
 	{
 		dprintf(STDOUT_FILENO, "L%d: usage: push integer\n", line_number);
 		free(code_line[0]);
