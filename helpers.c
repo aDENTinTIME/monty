@@ -74,12 +74,7 @@ void parse(char *path)
 	while (1)
 	{
 		if ((getline(&line, &count, fp)) == -1)
-		{
-			fclose(fp);
-			free_stack(stack);
-			free(line);
-			return;
-		}
+			break;
 		if (line)
 		{
 			array = tokenizer(line, "\n");
@@ -90,7 +85,18 @@ void parse(char *path)
 		{
 			func = find_opcode(array, line_number, &stack);
 			if (func)
+			{
 				func(&stack, line_number);
+				if (!strcmp(code_line[0], "FATAL_PUSH_ERROR"))
+				{
+					fclose(fp);
+					free_stack(stack);
+					free(line);
+					free_array(code_line);
+					free_array(array);
+					exit(EXIT_FAILURE);
+				}
+			}
 			free_array(code_line);
 			code_line = NULL;
 			free_array(array);
@@ -98,6 +104,9 @@ void parse(char *path)
 		}
 		line_number++;
 	}
+	fclose(fp);
+	free_stack(stack);
+	free(line);
 }
 
 

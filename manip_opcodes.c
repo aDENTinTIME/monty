@@ -39,6 +39,8 @@ void push_f(stack_t **stack, unsigned int line_number)
 	if (!code_line[1] || !strcmp(code_line[1], "") || is_only_numbers(code_line[1]))
 	{
 		dprintf(STDOUT_FILENO, "L%d: usage: push integer\n", line_number);
+		free(code_line[0]);
+		code_line[0] = strdup("FATAL_PUSH_ERROR");
 		return;
 	}
 
