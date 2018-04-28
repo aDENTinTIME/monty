@@ -57,6 +57,7 @@ void free_array(char **array);
 char **tokenizer(char *str, const char *delim);
 size_t stack_length(stack_t **stack);
 void short_stack(stack_t **stack, unsigned int line_number);
+int is_only_numbers(char *s);
 void free_stack(stack_t *stack);
 void make_path(char **path, char *filename);
 void parse(char *path);
@@ -71,6 +72,8 @@ void pop_f(stack_t **stack, unsigned int line_number);
 void swap_f(stack_t **stack, unsigned int line_number);
 void math(stack_t **stack, unsigned int line_number);
 void pchar_f(stack_t **stack, unsigned int line_number);
+void rotl_f(stack_t **stack, unsigned int line_number);
+void rotr_f(stack_t **stack, unsigned int line_number);
 
 
 #endif /* MONTY_H */
