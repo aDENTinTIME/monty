@@ -65,7 +65,7 @@ void pall_f(stack_t **stack, unsigned int line_number)
 
 
 /**
- * pint_f - Prints all the elements of a stack_t list.
+ * pint_f - Prints the value at the top of the stack, followed by a new line.
  *
  * @stack: Head of stack.
  * @line_number: Line number for current line of code.
